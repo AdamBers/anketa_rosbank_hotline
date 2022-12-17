@@ -14,6 +14,7 @@ document.addEventListener('gesturestart', function (e) {
     e.preventDefault();
 });
 
+
 checked.forEach(function (item) {
     item.checked === false
     item.addEventListener('click', function () {
@@ -29,13 +30,13 @@ form.onsubmit = function (e) {
         errorMessage.classList.remove('hidden')
         e.preventDefault()
     }
-    if (currentGrade !== '' && comment.value.length === 0) {
-        error_3.classList.remove("hidden")
-        e.preventDefault()
-    }
+    // if (currentGrade !== '' && comment.value.length === 0) {
+    //     error_3.classList.remove("hidden")
+    //     e.preventDefault()
+    // }
 
     let checked = document.querySelectorAll('input[type=checkbox]:checked')
-    if (checked.length === 0) {
+    if (checked.length === 0 && (currentGrade === 'star3' || currentGrade === 'star4' || currentGrade === 'star5')) {
         error_2.classList.remove('hidden')
         e.preventDefault()
     }
@@ -53,13 +54,14 @@ function handleStar(event) {
     const question3 = document.getElementById('question3')
     const errorMessage = document.getElementById('error-message')
     comment_div.classList.remove('hidden')
+    error_2.classList.add('hidden')
     send.classList.remove('hidden')
     document.querySelectorAll('input[type=checkbox]').forEach(el => el.checked = false);
 
 
     currentGrade = event.target.id
     errorMessage.classList.add('hidden')
-
+    console.log(currentGrade)
 
     label1.style.color = '#E5E7EA'
     label2.style.color = '#E5E7EA'
